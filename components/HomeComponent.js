@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card } from 'react-native-elements';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -23,7 +23,7 @@ function RenderItem({ item }) {
             </Card>
         );
     }
-    return <View />
+    return <View />;
 }
 
 class Home extends Component {
