@@ -22,7 +22,7 @@ import {
 import Reservation from './ReservationComponent';
 import Favorites from './FavoritesComponent';
 import Login from './LoginComponent';
-import NetInfo from '@react-native-community/netinfo';
+import NetInfo, { NetInfoCellularGeneration } from '@react-native-community/netinfo';
 
 
 const mapDispatchToProps = {
@@ -333,13 +333,14 @@ class Main extends Component {
         this.props.fetchComments();
         this.props.fetchPartners();
         this.props.fetchPromotions();
+        this.showNetInfo();
 
-        NetInfo.fetch().then(connectionInfo => {
-            (Platform.OS === 'ios')
-                ? Alert.alert('Initial Network Connectivity Type: ', connectionInfo.type)
-                : ToastAndroid.show('Initial Network Connectivity Type: ' +
-                    connectionInfo.type, ToastAndroid.LONG);
-        });
+        //NetInfo.fetch().then(connectionInfo => {
+        //(Platform.OS === 'ios')
+        //? Alert.alert('Initial Network Connectivity Type: ', connectionInfo.type)
+        //: ToastAndroid.show('Initial Network Connectivity Type: ' +
+        //connectionInfo.type, ToastAndroid.LONG);
+        //});
 
 
 
@@ -350,6 +351,14 @@ class Main extends Component {
 
     componentWillUnmount() {
         this.unsubscribeNetInfo();
+    }
+
+    showNetInfo = async () => {
+        const connectionInfo = await NetInfo.fetch();
+        (Platform.OS === 'ios') ?
+            Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
+            : ToastAndroid.show('Initial Network Connectivity Type:' +
+                connectionInfo.type, ToastAndroid.LONG);
     }
 
     handleConnectivityChange = connectionInfo => {

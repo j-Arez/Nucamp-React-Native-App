@@ -217,7 +217,7 @@ class CampsiteInfo extends Component {
                         <Input
                             placeholder='Author' leftIcon={{
                                 type: 'font-awesome',
-                                name: 'user-0'
+                                name: 'user-o'
                             }}
                             leftIconContainerStyle={{ paddingRight: 10 }}
                             onChangeText={(author) => this.setState({ author: author })}
